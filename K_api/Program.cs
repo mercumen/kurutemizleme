@@ -26,13 +26,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     ));
 
 
+
 var app = builder.Build();
 app.UseCors("AllowAll");
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
-
+// app.UseHttpsRedirection();
+app.MapGet("/", () => "api calisiyor");
 app.UseAuthorization();
 
 app.MapControllers();  // <---- Bu ŞART!

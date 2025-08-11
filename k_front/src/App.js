@@ -10,26 +10,25 @@ function App() {
   const [products, setProducts] = useState([]);
   const [contact, setContact] = useState({});
   const [newProduct, setNewProduct] = useState({ name: '', price: '' });
+  const [newPrice, setNewPrice] = useState({ newPrice: '' })
 
-
-
+  const API_BASE = 'http://muhittinercument.online';
   useEffect(() => {
-    const API_BASE = 'http://localhost:5018'; // kendi portunu kullan
+    const API_BASE = 'http://muhittinercument.online'; // kendi portunu kullan
 
     axios.get(`${API_BASE}/SiteInfo/intro`).then(res => setIntro(res.data));
     axios.get(`${API_BASE}/SiteInfo/products`).then(res => setProducts(res.data));
     axios.get(`${API_BASE}/SiteInfo/contact`).then(res => setContact(res.data));
   }, []);
-
+  //const handleChangePrice = async 
   const handleChangeIntro = async (e) => {
     e.preventDefault();
 
     const updatedIntro = {
       info: intro  // <-- info olmalı, backend'deki propery'e göre
     };
-
     try {
-      await axios.put('http://localhost:5018/SiteInfo/intro', updatedIntro);
+      await axios.put(`${API_BASE}/SiteInfo/intro`, updatedIntro);
       alert("Intro güncellendi!");
     } catch (error) {
       console.error("PUT hatası:", error);
@@ -38,7 +37,7 @@ function App() {
   const handleAddProduct = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5018/SiteInfo/products', {
+      const response = await axios.post(`${API_BASE}/SiteInfo/products`, {
         name: newProduct.name,
         price: parseFloat(newProduct.price)
       });
@@ -50,19 +49,12 @@ function App() {
     }
 
   };
-  const handleChangeProduct = async (productId) => {
-    try {
-      await axios.put('http://localhost:5018/SiteInfo/products',updatedPrice);
-      alert("fiyat deigistirildi!");
-    } catch (error) {
-      console.error("put hatasi",error);
-    }
-  }
+
 
 
   const handleDeleteProduct = async (productId) => {
     try {
-      await axios.delete(`http://localhost:5018/SiteInfo/products/${productId}`)
+      await axios.delete(`${API_BASE}/SiteInfo/products/${productId}`)
       setProducts(prev => prev.filter(p => p.id !== productId));
     }
     catch (error) {
@@ -90,7 +82,6 @@ function App() {
             <li key={p.id} className="d-flex justify-content-between align-items-center my-2">
               <span>{p.name}: {p.price} TL</span>
               <button onClick={() => handleDeleteProduct(p.id)} className="btn btn-danger btn-sm">Sil</button>
-
 
             </li>
           ))}

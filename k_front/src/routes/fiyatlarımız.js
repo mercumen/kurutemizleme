@@ -9,9 +9,9 @@ function Fiyatlarimiz() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const API_BASE = 'http://localhost:5018'; // kendi portunu kullan
+        const API_BASE = 'http://muhittinercument.online'; // kendi portunu kullan
 
-        axios.get(`${API_BASE}/SiteInfo/intro`).then(res => setIntro(res.data));
+        //axios.get(`${API_BASE}/SiteInfo/intro`).then(res => setIntro(res.data));
         axios.get(`${API_BASE}/SiteInfo/products`).then(res => setProducts(res.data));
     }, []);
     return (
@@ -24,7 +24,7 @@ function Fiyatlarimiz() {
                 </p>
                 <p>
 
-                    {intro.info}
+
 
                 </p>
             </header>

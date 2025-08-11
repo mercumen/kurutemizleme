@@ -6,7 +6,7 @@ import axios from "axios";
 const Contact = () => {
   const [contact, setContact] = useState({});
   useEffect(() => {
-    const API_BASE = 'http://localhost:5018'; // kendi portunu kullan
+    const API_BASE = 'http://muhittinercument.online'; // kendi portunu kullan
     axios.get(`${API_BASE}/SiteInfo/contact`).then(res => setContact(res.data));
   }, []);
   return (
@@ -20,7 +20,7 @@ const Contact = () => {
       {contact.email}
       {contact.phone}
       {contact.address}
-  
+
     </div>
   )
 }

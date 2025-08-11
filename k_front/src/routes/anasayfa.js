@@ -8,7 +8,7 @@ function Anasayfa() {
 
 
     useEffect(() => {
-        const API_BASE = 'http://localhost:5018';
+        const API_BASE = 'http://muhittinercument.online';
         axios.get(`${API_BASE}/SiteInfo/intro`).then(res => setIntro(res.data));
     }, []);
 

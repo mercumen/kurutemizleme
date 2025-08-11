@@ -61,7 +61,7 @@ namespace K_api.Controllers
             var existingProduct = _context.Products.FirstOrDefault(p => p.Id == id);
             if (existingProduct == null)
                 return NotFound("urun bulunamadi");
-            existingProduct.Name = updatedProduct.Name;
+
             existingProduct.Price = updatedProduct.Price;
             _context.SaveChanges();
             return Ok(existingProduct);
